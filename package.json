@@ -1,7 +1,8 @@
-{ "name": "dicer",
+{
+  "name": "server-kit-dicer",
   "version": "0.2.4",
-  "author": "Brian White <mscdex@mscdex.net>",
-  "description": "A very fast streaming multipart parser for node.js",
+  "author": "Cédric Ronvel",
+  "description": "A small modification of the original 'dicer' package by Brian White (aka mscdex). Use the original package.",
   "main": "./lib/Dicer",
   "dependencies": {
     "streamsearch": "0.1.2",
@@ -11,7 +12,13 @@
     "test": "node test/test.js"
   },
   "engines": { "node": ">=0.8.0" },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cronvel/server-kit-dicer.git"
+  },
   "keywords": [ "parser", "parse", "parsing", "multipart", "form-data", "streaming" ],
-  "licenses": [ { "type": "MIT", "url": "http://github.com/mscdex/dicer/raw/master/LICENSE" } ],
-  "repository" : { "type": "git", "url": "http://github.com/mscdex/dicer.git" }
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cronvel/server-kit-dicer/issues"
+  }
 }
