@@ -1,4 +1,5 @@
 var assert = require('assert'),
+	util = require( 'util' ) ,
     path = require('path');
 
 var HeaderParser = require('../lib/HeaderParser');
@@ -17,19 +18,19 @@ var group = path.basename(__filename, '.js') + '/';
   { source: ['Content-Type:\t  text/plain',
              'Content-Length:0'
             ].join('\r\n') + DCRLF,
-    expected: {'content-type': ['  text/plain'], 'content-length': ['0']},
+    expected: {'content-type': '  text/plain', 'content-length': '0'},
     what: 'Value spacing'
   },
   { source: ['Content-Type:\r\n text/plain',
              'Foo:\r\n bar\r\n baz',
             ].join('\r\n') + DCRLF,
-    expected: {'content-type': [' text/plain'], 'foo': [' bar baz']},
+    expected: {'content-type': ' text/plain', 'foo': ' bar baz'},
     what: 'Folded values'
   },
   { source: ['Content-Type:',
              'Foo: ',
             ].join('\r\n') + DCRLF,
-    expected: {'content-type': [''], 'foo': ['']},
+    expected: {'content-type': '', 'foo': ''},
     what: 'Empty values'
   },
   { source: MAXED_BUFFER.toString('ascii') + DCRLF,
@@ -53,7 +54,7 @@ var group = path.basename(__filename, '.js') + '/';
     fired = true;
     assert.deepEqual(header,
                      v.expected,
-                     makeMsg(v.what, 'Parsed result mismatch'));
+                     makeMsg(v.what, 'Parsed result mismatch', header, v.expected));
   });
   if (!Array.isArray(v.source))
     v.source = [v.source];
@@ -63,6 +64,8 @@ var group = path.basename(__filename, '.js') + '/';
   assert(fired, makeMsg(v.what, 'Did not receive header from parser'));
 });
 
-function makeMsg(what, msg) {
-  return '[' + group + what + ']: ' + msg;
+function makeMsg(what, msg, got, expected) {
+  return '[' + group + what + ']: ' + msg +
+  	'\n\nActual:\n' + util.inspect( got ) +
+  	'\n\nExpected:\n' + util.inspect( expected ) ;
 }

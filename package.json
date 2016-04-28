@@ -1,6 +1,6 @@
 {
   "name": "server-kit-dicer",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "author": "Cédric Ronvel",
   "description": "A small modification of the original 'dicer' package by Brian White (aka mscdex). Use the original package.",
   "main": "./lib/Dicer",

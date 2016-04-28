@@ -6,6 +6,15 @@ var assert = require('assert'),
 
 var FIXTURES_ROOT = __dirname + '/fixtures/';
 
+
+// /!\ Custom modification /!\
+function unarray( header )
+{
+	var k ;
+	for ( k in header ) { header[ k ] = header[ k ][ header[ k ].length - 1 ] ; }
+}
+// /!\ End of modification /!\
+
 var t = 0,
     group = path.basename(__filename, '.js') + '/';
 
@@ -146,6 +155,7 @@ function next() {
     if (fs.existsSync(fixtureBase + '/preamble.header')) {
       var prehead = JSON.parse(fs.readFileSync(fixtureBase
                                                + '/preamble.header', 'binary'));
+      unarray( prehead ) ;
       if (!preamble) {
         preamble = {
           body: undefined,
@@ -210,9 +220,11 @@ function next() {
       if (fs.existsSync(fixtureBase + '/part' + (i+1) + '.header')) {
         header = fs.readFileSync(fixtureBase
                                  + '/part' + (i+1) + '.header', 'binary');
-        header = JSON.parse(header);
+        header = JSON.parse(header) ;
+        unarray( header ) ;
       } else
         header = undefined;
+      
       assert.deepEqual(state.parts[i].header,
                        header,
                        makeMsg(v.what,
