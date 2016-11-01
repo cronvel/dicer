@@ -1,6 +1,6 @@
 {
   "name": "server-kit-dicer",
-  "version": "0.2.6",
+  "version": "0.3.0",
   "author": "Cédric Ronvel",
   "description": "A small modification of the original 'dicer' package by Brian White (aka mscdex). Use the original package.",
   "main": "./lib/Dicer",
@@ -11,12 +11,21 @@
   "scripts": {
     "test": "node test/test.js"
   },
-  "engines": { "node": ">=0.8.0" },
+  "engines": {
+    "node": ">=4.5.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/cronvel/server-kit-dicer.git"
   },
-  "keywords": [ "parser", "parse", "parsing", "multipart", "form-data", "streaming" ],
+  "keywords": [
+    "parser",
+    "parse",
+    "parsing",
+    "multipart",
+    "form-data",
+    "streaming"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/cronvel/server-kit-dicer/issues"
