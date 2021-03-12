@@ -5,7 +5,7 @@ var assert = require('assert'),
 var HeaderParser = require('../lib/HeaderParser');
 
 var DCRLF = '\r\n\r\n',
-    MAXED_BUFFER = new Buffer(128 * 1024);
+    MAXED_BUFFER = Buffer.allocUnsafe(128 * 1024);
 MAXED_BUFFER.fill(0x41); // 'A'
 
 var group = path.basename(__filename, '.js') + '/';
@@ -64,8 +64,6 @@ var group = path.basename(__filename, '.js') + '/';
   assert(fired, makeMsg(v.what, 'Did not receive header from parser'));
 });
 
-function makeMsg(what, msg, got, expected) {
-  return '[' + group + what + ']: ' + msg +
-  	'\n\nActual:\n' + util.inspect( got ) +
-  	'\n\nExpected:\n' + util.inspect( expected ) ;
+function makeMsg(what, msg) {
+  return '[' + group + what + ']: ' + msg;
 }
